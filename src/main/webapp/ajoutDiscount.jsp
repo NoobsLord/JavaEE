@@ -44,20 +44,23 @@
 		<form method='GET'>
 			Code : <input name="code" size="1" maxlength="1" pattern="[A-Z]{1}+" title="Une lettre en MAJUSCULES"><br/>
 			Taux : <input name="taux" type="number" step="0.01" min="0.0" max="99.99" size="5"><br/>
+                        <br>
 			<input type="hidden" name="action" value="ADD">
-			<input type="submit" value="Ajouter">
+			<input type="submit" name="action" value="Ajouter">
 		</form>
 		<%--  On montre un éventuel message d'erreur --%>
 		<div><h4>${message}</h4></div>
-		<%-- On on montre la liste des discount codes --%>
+		<%-- On montre la liste des discount codes --%>
 		<div class="table">
-			<div class="thead"><div class="td">Code</div><div class="td">Taux</div><div class="td">Action</div></div>
+			<div class="thead"><div class="td">Code</div><div class="td">Taux</div><div class="td">Action</div><div class="td">Refresh</div></div>
 			<div class="tbody">
 			<c:forEach var="record" items="${codes}">
 				<form class="tr" method="get">
 					<div class="td"><input type="text" name="code" value="${record.discountCode}" readonly/></div>
 					<div class="td"><input name="taux" type="number" step="0.01" min="0.0" max="99.99" size="5" value="${record.rate}"/></div>
 					<div class="td"><input type="submit" name="action" value="DELETE"/></div>
+                                        <div class="td"><input type="submit" name="action" value="UPDATE"/></div>
+                                        
 				</form>	  		    
 			</c:forEach>  
 			</div>
